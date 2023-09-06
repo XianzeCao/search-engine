@@ -3,6 +3,7 @@ package com.example.searchengine.algo;
 import com.example.searchengine.model.DocumentData;
 
 import java.util.List;
+import java.util.Map;
 
 public class TFIDF {
 
@@ -25,6 +26,19 @@ public class TFIDF {
             documentData.putTermFrequency(term, termFreq);
         }
         return documentData;
+    }
+
+
+    private static double calculateDocumentScore(List<String> terms,
+                                                 DocumentData documentData,
+                                                 Map<String, Double> termToInverseDocumentFrequency) {
+        double score = 0;
+        for (String term : terms) {
+            double termFrequency = documentData.getFrequency(term);
+            double inverseTermFrequency = termToInverseDocumentFrequency.get(term);
+            score += termFrequency * inverseTermFrequency;
+        }
+        return score;
     }
 
 }
