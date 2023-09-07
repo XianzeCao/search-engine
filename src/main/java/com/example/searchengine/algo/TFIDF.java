@@ -2,9 +2,7 @@ package com.example.searchengine.algo;
 
 import com.example.searchengine.model.DocumentData;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class TFIDF {
 
@@ -61,6 +59,18 @@ public class TFIDF {
             termToIDF.put(term, idf);
         }
         return termToIDF;
+    }
+
+    public static List<String> getWordsFromDocument(List<String> lines) {
+        List<String> words = new ArrayList<>();
+        for (String line : lines) {
+            words.addAll(getWordsFromLine(line));
+        }
+        return words;
+    }
+
+    public static List<String> getWordsFromLine(String line) {
+        return Arrays.asList(line.split("(\\.)+|(,)+|( )+|(-)+|(\\?)+|(!)+|(;)+|(:)+|(/d)+|(/n)+"));
     }
 
 
