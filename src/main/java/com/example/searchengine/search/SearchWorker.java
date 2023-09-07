@@ -1,6 +1,6 @@
 package com.example.searchengine.search;
 
-public class searchWorker {
+public class SearchWorker {
     private static final String ENDPOINT = "/task";
 
 }
