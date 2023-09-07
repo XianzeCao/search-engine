@@ -2,6 +2,7 @@ package com.example.searchengine.algo;
 
 import com.example.searchengine.model.DocumentData;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -40,5 +41,27 @@ public class TFIDF {
         }
         return score;
     }
+
+    private static double getInverseDocumentFrequency(String term, Map<String, DocumentData> documentResults) {
+        double n = 0;
+        for (DocumentData documentData : documentResults.values()) {
+            double termFrequency = documentData.getFrequency(term);
+            if (termFrequency > 0.0) {
+                n++;
+            }
+        }
+        return n == 0 ? 0 : Math.log10(documentResults.size() / n);
+    }
+
+    private static Map<String, Double> getTermToInverseDocumentFrequencyMap(List<String> terms,
+                                                                            Map<String, DocumentData> documentResults) {
+        Map<String, Double> termToIDF = new HashMap<>();
+        for (String term : terms) {
+            double idf = getInverseDocumentFrequency(term, documentResults);
+            termToIDF.put(term, idf);
+        }
+        return termToIDF;
+    }
+
 
 }
