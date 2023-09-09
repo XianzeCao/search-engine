@@ -25,6 +25,7 @@
 package com.example.searchengine.model;
 
 import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 import java.util.Collections;
@@ -35,6 +36,7 @@ import java.util.Map;
  *
  */
 @AllArgsConstructor
+@NoArgsConstructor
 public class Result implements Serializable {
     private Map<String, DocumentData> documentToDocumentData;
 
